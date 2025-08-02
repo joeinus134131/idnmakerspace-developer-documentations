@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi Interaktif - IDN Makerspace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Subtle & Sophisticated -->
+    <!-- Application Structure Plan: SPA ini dirancang dengan struktur tematik vertikal untuk memandu pengguna melalui dokumentasi proyek secara logis. Dimulai dengan gambaran umum (Deskripsi & Fitur), diikuti oleh detail teknis (Tumpukan Teknologi & Struktur Folder Interaktif), panduan praktis (Instalasi & Skrip), dan diakhiri dengan informasi tambahan (Deployment & Kontribusi). Struktur ini dipilih karena meniru alur pemikiran seorang pengembang yang baru mengenal proyek: pertama memahami 'apa' dan 'mengapa', lalu 'bagaimana' cara kerjanya, dan terakhir 'bagaimana' cara menggunakannya. Interaktivitas utama difokuskan pada 'Struktur Folder' dan 'Panduan Memulai' untuk mengubah bagian yang paling padat teks menjadi pengalaman eksplorasi yang menarik. -->
+    <!-- Visualization & Content Choices: 1. Deskripsi & Fitur -> (Goal: Inform) -> Layout 2 kolom. Justifikasi: Memisahkan narasi dari poin-poin kunci untuk pemahaman cepat. (Method: HTML/Tailwind). 2. Tumpukan Teknologi -> (Goal: Organize) -> Kartu dengan ikon. Justifikasi: Lebih menarik secara visual daripada tabel standar. (Method: HTML/Tailwind, ikon Unicode). 3. Struktur Folder -> (Goal: Explore) -> Pohon folder yang dapat diklik. Justifikasi: Mengubah daftar statis menjadi alat eksplorasi interaktif. (Method: JS untuk event-handling, HTML/Tailwind untuk UI). 4. Panduan Memulai -> (Goal: Instruct) -> Antarmuka tab dengan tombol salin. Justifikasi: Mengelompokkan informasi terkait (instalasi & skrip) secara bersih. (Method: JS untuk tab & fungsionalitas salin, HTML/Tailwind untuk UI). 5. Opsi Deployment -> (Goal: Compare) -> Kartu perbandingan berdampingan. Justifikasi: Memudahkan perbandingan cepat antara Vercel/Netlify dan Docker. (Method: HTML/Tailwind). Chart.js/Plotly.js tidak digunakan karena data sumber (README) tidak mengandung data kuantitatif yang cocok untuk divisualisasikan dalam bentuk grafik; fokusnya adalah pada penyajian informasi tekstual dan struktural secara interaktif. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F5;
+            color: #424242;
+        }
+        .font-code {
+            font-family: 'Source Code Pro', monospace;
+        }
+        .sticky-nav a.active {
+            color: #1976D2;
+            font-weight: 600;
+        }
+        .folder-tree .folder-item:hover {
+            background-color: #E3F2FD;
+            cursor: pointer;
+        }
+        .folder-tree .folder-item.selected {
+            background-color: #BBDEFB;
+            color: #1976D2;
+            font-weight: 600;
+        }
+        .copy-btn {
+            transition: all 0.2s ease-in-out;
+        }
+        .copy-btn:hover {
+            background-color: #64B5F6;
+        }
+        .copy-btn.copied {
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="flex flex-col md:flex-row">
+        <nav id="sticky-nav" class="sticky-nav md:sticky top-0 md:h-screen w-full md:w-64 bg-white shadow-lg md:shadow-none border-b md:border-r border-gray-200 z-20">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold text-blue-600">IDN Makerspace</h2>
+                <p class="text-sm text-gray-500 mt-1">Dokumentasi Proyek</p>
+            </div>
+            <ul class="flex flex-row md:flex-col p-4 md:p-6 space-x-4 md:space-x-0 md:space-y-2 overflow-x-auto">
+                <li><a href="#deskripsi" class="block py-2 text-gray-600 hover:text-blue-600 transition duration-200">Deskripsi</a></li>
+                <li><a href="#teknologi" class="block py-2 text-gray-600 hover:text-blue-600 transition duration-200">Teknologi</a></li>
+                <li><a href="#struktur" class="block py-2 text-gray-600 hover:text-blue-600 transition duration-200">Struktur Proyek</a></li>
+                <li><a href="#memulai" class="block py-2 text-gray-600 hover:text-blue-600 transition duration-200">Panduan Memulai</a></li>
+                <li><a href="#deployment" class="block py-2 text-gray-600 hover:text-blue-600 transition duration-200">Deployment</a></li>
+                <li><a href="#kontribusi" class="block py-2 text-gray-600 hover:text-blue-600 transition duration-200">Kontribusi</a></li>
+            </ul>
+        </nav>
+
+        <main class="w-full p-6 md:p-10 lg:p-12">
+            
+            <section id="deskripsi" class="mb-16">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">Dokumentasi Interaktif</h1>
+                <p class="text-lg text-gray-600 mb-8">Selamat datang di dokumentasi interaktif untuk proyek Landing Page IDN Makerspace. Laman ini mengubah `README.md` standar menjadi pengalaman yang lebih mudah dijelajahi dan dipahami.</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-700 mb-4">Tentang Proyek</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Proyek ini adalah landing page resmi untuk IDN Makerspace, yang berfungsi sebagai gerbang utama untuk memperkenalkan visi, misi, proyek unggulan, dan kelas-kelas gratis yang kami tawarkan. Dibangun dengan tumpukan teknologi modern, landing page ini dirancang untuk menjadi cepat, responsif, dan mudah dipelihara.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-700 mb-4">Fitur Utama</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">📱</span> <strong>Desain Responsif:</strong> Tampilan optimal di berbagai perangkat, dari desktop hingga mobile.</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">📋</span> <strong>Informasi Lengkap:</strong> Bagian khusus untuk semua informasi penting.</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">✨</span> <strong>Animasi Halus:</strong> Pengalaman pengguna yang dinamis tanpa mengorbankan performa.</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">🔧</span> <strong>Teknologi Modern:</strong> Dibangun dengan React, TypeScript, dan Tailwind CSS.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="teknologi" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Tumpukan Teknologi</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="font-bold text-xl mb-2 text-blue-700">Frontend</h4>
+                        <p class="text-sm text-gray-600">React.js, TypeScript, Vite, Tailwind CSS</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="font-bold text-xl mb-2 text-blue-700">Deployment</h4>
+                        <p class="text-sm text-gray-600">Docker, Nginx, Vercel, Netlify</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="font-bold text-xl mb-2 text-blue-700">Styling & Tooling</h4>
+                        <p class="text-sm text-gray-600">PostCSS, Autoprefixer, ESLint</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="struktur" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Eksplorasi Struktur Proyek</h2>
+                <p class="text-gray-600 mb-6">Klik pada file atau folder di bawah ini untuk melihat deskripsinya. Ini adalah cara interaktif untuk memahami bagaimana proyek diorganisir.</p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="md:col-span-1 bg-white p-4 rounded-xl shadow-md border border-gray-100">
+                        <ul id="folder-tree" class="folder-tree font-code text-sm space-y-1">
+                            <li class="folder-item p-2 rounded" data-description="Folder publik yang berisi aset statis seperti `index.html` dan `favicon.ico`.">📁 public</li>
+                            <li class="folder-item p-2 rounded" data-description="Folder utama yang berisi semua kode sumber aplikasi React.">📁 src</li>
+                            <li class="folder-item p-2 rounded ml-4" data-description="Menyimpan semua aset non-kode seperti gambar, ikon, dan font."> L 📁 assets</li>
+                            <li class="folder-item p-2 rounded ml-4" data-description="Berisi komponen-komponen React yang dapat digunakan kembali di seluruh aplikasi."> L 📁 components</li>
+                            <li class="folder-item p-2 rounded ml-4" data-description="Berisi file styling global, termasuk konfigurasi utama Tailwind CSS."> L 📁 styles</li>
+                            <li class="folder-item p-2 rounded ml-4" data-description="Komponen React utama yang menjadi root dari aplikasi."> L 📄 App.tsx</li>
+                            <li class="folder-item p-2 rounded ml-4" data-description="Titik masuk (entry point) aplikasi React yang merender komponen App ke DOM."> L 📄 main.tsx</li>
+                            <li class="folder-item p-2 rounded" data-description="File konfigurasi untuk mengabaikan file dan folder dari pelacakan Git.">📄 .gitignore</li>
+                            <li class="folder-item p-2 rounded" data-description="File konfigurasi Docker untuk membuat container aplikasi.">📄 Dockerfile</li>
+                            <li class="folder-item p-2 rounded" data-description="Berisi metadata proyek dan daftar semua dependensi (packages).">📄 package.json</li>
+                            <li class="folder-item p-2 rounded" data-description="Dokumentasi utama proyek ini.">📄 README.md</li>
+                            <li class="folder-item p-2 rounded" data-description="File konfigurasi untuk TypeScript.">📄 tsconfig.json</li>
+                            <li class="folder-item p-2 rounded" data-description="File konfigurasi untuk Vite, build tool yang digunakan.">📄 vite.config.ts</li>
+                        </ul>
+                    </div>
+                    <div id="description-panel" class="md:col-span-2 bg-blue-50 p-8 rounded-xl flex items-center justify-center min-h-[300px]">
+                        <p class="text-center text-gray-500">Pilih file atau folder untuk melihat detailnya di sini.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="memulai" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Panduan Memulai</h2>
+                <div class="bg-white rounded-xl shadow-md border border-gray-100">
+                    <div class="border-b border-gray-200">
+                        <nav id="tabs-nav" class="flex space-x-1 p-2" aria-label="Tabs">
+                            <button class="tab-btn active bg-blue-100 text-blue-700 font-semibold px-4 py-2 rounded-lg" data-target="instalasi">Instalasi</button>
+                            <button class="tab-btn text-gray-600 hover:bg-gray-100 font-semibold px-4 py-2 rounded-lg" data-target="skrip">Skrip Tersedia</button>
+                        </nav>
+                    </div>
+                    <div class="p-6">
+                        <div id="instalasi" class="tab-content">
+                            <h4 class="font-bold text-lg mb-4">Langkah-langkah Instalasi Lokal</h4>
+                            <ol class="space-y-4">
+                                <li>
+                                    <p class="font-semibold">1. Kloning Repositori</p>
+                                    <div class="bg-gray-800 text-white font-code p-4 rounded-lg mt-2 relative">
+                                        <button class="copy-btn absolute top-2 right-2 bg-gray-600 text-white text-xs px-2 py-1 rounded">Salin</button>
+                                        <pre><code>git clone &lt;URL_REPOSITORI_ANDA&gt;
+cd idn-makerspace</code></pre>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p class="font-semibold">2. Instal Dependensi</p>
+                                    <div class="bg-gray-800 text-white font-code p-4 rounded-lg mt-2 relative">
+                                        <button class="copy-btn absolute top-2 right-2 bg-gray-600 text-white text-xs px-2 py-1 rounded">Salin</button>
+                                        <pre><code>npm install</code></pre>
+                                    </div>
+                                </li>
+                                <li>
+                                    <p class="font-semibold">3. Jalankan Server Pengembangan</p>
+                                    <div class="bg-gray-800 text-white font-code p-4 rounded-lg mt-2 relative">
+                                        <button class="copy-btn absolute top-2 right-2 bg-gray-600 text-white text-xs px-2 py-1 rounded">Salin</button>
+                                        <pre><code>npm run dev</code></pre>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                        <div id="skrip" class="tab-content hidden">
+                            <p class="mb-4">Gunakan skrip berikut untuk mengelola proyek Anda:</p>
+                            <ul class="space-y-2 font-code text-sm">
+                                <li class="bg-gray-100 p-3 rounded-md"><strong>npm run dev:</strong> Menjalankan server pengembangan.</li>
+                                <li class="bg-gray-100 p-3 rounded-md"><strong>npm run build:</strong> Membangun aplikasi untuk produksi.</li>
+                                <li class="bg-gray-100 p-3 rounded-md"><strong>npm run lint:</strong> Menjalankan linter untuk memeriksa kualitas kode.</li>
+                                <li class="bg-gray-100 p-3 rounded-md"><strong>npm run preview:</strong> Menjalankan hasil build produksi secara lokal.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="deployment" class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Opsi Deployment</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                        <h4 class="font-bold text-2xl mb-3 text-blue-700">🚀 Vercel / Netlify</h4>
+                        <p class="text-gray-600 mb-4">Cara termudah dan tercepat untuk mendeploy aplikasi React statis. Sangat direkomendasikan untuk MVP.</p>
+                        <ul class="text-sm space-y-2 list-disc list-inside">
+                            <li>Deployment otomatis dari Git.</li>
+                            <li>CDN Global & HTTPS gratis.</li>
+                            <li>Tidak perlu konfigurasi server.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                        <h4 class="font-bold text-2xl mb-3 text-blue-700">🐳 Docker</h4>
+                        <p class="text-gray-600 mb-4">Fleksibilitas penuh untuk mendeploy di mana saja, dari server pribadi hingga cloud provider.</p>
+                        <ul class="text-sm space-y-2 list-disc list-inside">
+                            <li>Lingkungan yang konsisten.</li>
+                            <li>Portabilitas tinggi.</li>
+                            <li>Kontrol penuh atas infrastruktur.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="kontribusi" class="text-center bg-blue-600 text-white p-10 rounded-xl">
+                <h2 class="text-3xl font-bold mb-4">Ingin Berkontribusi?</h2>
+                <p class="max-w-2xl mx-auto mb-6">Kontribusi sangat kami hargai! Jika Anda ingin membantu, silakan fork repositori ini, buat branch baru untuk fitur Anda, dan buka Pull Request.</p>
+                <a href="#" class="bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-100 transition-colors duration-300">Lihat di GitHub</a>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Interactive Folder Tree
+            const folderItems = document.querySelectorAll('.folder-item');
+            const descriptionPanel = document.getElementById('description-panel');
+            const initialDesc = descriptionPanel.innerHTML;
+
+            folderItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    folderItems.forEach(i => i.classList.remove('selected'));
+                    item.classList.add('selected');
+                    const description = item.getAttribute('data-description');
+                    descriptionPanel.innerHTML = `<p class="text-center text-gray-800 text-lg">${description}</p>`;
+                });
+            });
+
+            // Tabs for Getting Started
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.getAttribute('data-target');
+                    
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-blue-100', 'text-blue-700');
+                        btn.classList.add('text-gray-600', 'hover:bg-gray-100');
+                    });
+                    button.classList.add('active', 'bg-blue-100', 'text-blue-700');
+                    button.classList.remove('text-gray-600', 'hover:bg-gray-100');
+                    
+                    tabContents.forEach(content => {
+                        if (content.id === targetId) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // Copy to Clipboard
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const codeBlock = button.nextElementSibling;
+                    const code = codeBlock.textContent;
+                    navigator.clipboard.writeText(code).then(() => {
+                        button.textContent = 'Disalin!';
+                        button.classList.add('copied');
+                        setTimeout(() => {
+                            button.textContent = 'Salin';
+                            button.classList.remove('copied');
+                        }, 2000);
+                    });
+                });
+            });
+
+            // Sticky Nav Active State on Scroll
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('#sticky-nav a');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: "-30% 0px -70% 0px" });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>
